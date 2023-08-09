@@ -397,5 +397,25 @@ class cliente extends conexao
 		$stmt->close();
 		$this->conn->close();
 	}
+
+	//confirma pgto
+	public function confirmaPgto($hoje, $id)
+	{
+		$sql = "UPDATE $this->tabela SET data_contrato = ? WHERE id = ?";
+		$stmt = $this->conn->prepare($sql);
+		$stmt->bind_param('si', $hoje, $id);
+		$stmt->execute();
+
+		if ($stmt == true) {
+			header('Location:showClients.php?edit=alterado');
+		} else {
+			die("Falha no atualizar!");
+		}
+		$stmt->close();
+		$this->conn->close();
+	}
+
+
+
 } //fim da classe cliente
 

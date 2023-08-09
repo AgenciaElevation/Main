@@ -2,15 +2,16 @@
 session_start();
 if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
     $user = $_SESSION['user'];
-    $id = $_GET['id'];
-    $id = base64_decode($id);
+    $encId = $_GET['id'];
+    $id = base64_decode($encId);
 
     require('../cliente.php');
     $cliente = new cliente();
     $consulta = $cliente->consultaID($id);
     $status = ($cliente->getStatus() == 1) ? "<span class='text-success'>Ativo</span>" : "<span class='text-danger'>Inativo</span>";               
     $ativar = ($cliente->getStatus() == 1) ? "<a href='javascript:void(0)' class='desativa'><img class='icon' src='assets/img/lock.png'>(desativar)</a>" : "<a href='javascript:void(0)' class='ativa'><img class='icon' src='assets/img/check.png'>(ativar)</a>";
-    
+    $disabled =  (!$cliente->getDom()) ? '' : 'disabled';
+    $pgto =  ($cliente->getContrato()) ? '' : "<a href='processa-pgto.php?id=$encId' class='btn btn-warning'>CONFIRMAR PAGAMENTO</a>";
 ?>
         <!DOCTYPE html>
         <html lang="pt-br">
@@ -83,7 +84,10 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
   
                             <br><br>
                             <strong>Domínio:</strong> 
-                            <input type="text" class="form-control" name="dominio" value="<?=$cliente->getDom()?>" />
+                            <input type="text" class="form-control" name="dominio" value="<?=$cliente->getDom()?>" 
+                            <?=$disabled?> />
+                            <br>
+                            <?=$pgto?>
                             <br><br>
                             <a href="showClients.php" class="btn btn-secondary">VOLTAR</a>
                             <button class="btn btn-success">SALVAR</button>
