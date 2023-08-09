@@ -1,0 +1,39 @@
+.f22 {
+    font-size: 22px !important;
+}
+.f20 input{
+    font-size: 20px !important;
+}
+
+
+#logar{
+    margin-top: 20px;
+    font-size: 24px !important;
+    padding: 10px 60px !important;
+}
+.f18{
+    font-size: 18px !important;
+}
+#cadastre{
+    font-size: 20px;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+}
+.cadastro input{
+    font-size: 20px !important;
+    margin-bottom: 20px;
+}
+#cadastra{
+    margin: 20px 0 0 40px;
+    font-size: 24px;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+}
+.afirmo{
+    font-size: 20px !important;
+    padding-left: 38px !important;
+    margin-bottom: 10px;
+}
+.afirmo label{
+    margin-left: 10px;
+}
