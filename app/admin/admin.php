@@ -134,7 +134,6 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                                         <th>Email</th>
                                         <th>Data Criação</th>
                                         <th class="text-center">Status</th>
-                                        <th class="text-center">Ativar/Desativar</th>
                                         <th class="text-center">Editar</th>
                                         <th class="text-center">Excluir</th>
                                     </tr>
@@ -153,7 +152,6 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                                         $email = $linha['email'];
                                         $created = date('d/m/Y - H:i', strtotime($linha['created']));
                                         $status = ($linha['status'] == 1) ? "<span class='text-success'>Ativo</span>" : "<span class='text-danger'>Inativo</span>";
-                                        $ativar = ($linha['status'] == 1) ? "<a href='javascript:void(0)' class='desativa'><img class='icon' src='assets/img/lock.png'></a>" : "<a href='javascript:void(0)' class='ativa'><img class='icon' src='assets/img/check.png'></a>";
                                         $editar = "<a href='editUser.php?id=$id'><img class='icon' src='assets/img/edit.png'></a>";
                                         $excluir = "<a href='javascript:void(0)' class='excluir'><img class='icon' src='assets/img/delete.png'></a>";
                                         echo " 
@@ -164,7 +162,6 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                                         <td>$email</td>
                                         <td>$created</td>
                                         <td class='text-center'>$status</td>
-                                        <td class='text-center'>$ativar</td>
                                         <td class='text-center'>$editar</td>
                                         <td class='text-center'>$excluir</td>
                                     </tr>";
@@ -221,44 +218,6 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                 }).then((result) => {
                     if (result.isConfirmed) {
                         window.location = "processa-deleteUser.php?id=<?php echo $id ?>";
-                    }
-                })
-            });
-        </script>
-
-        <script>
-            $(".desativa").click(function() {
-                Swal.fire({
-                    title: "Você tem certeza?",
-                    text: "O admin será desativado!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#888',
-                    confirmButtonText: 'Sim, Desativar!',
-                    cancelButtonText: 'Cancelar'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location = "processa-desativaUser.php?id=<?php echo $id ?>";
-                    }
-                })
-            });
-        </script>
-
-        <script>
-            $(".ativa").click(function() {
-                Swal.fire({
-                    title: "Atenção!",
-                    text: "Você deseja realmente ativar esse Admin?",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: '#33d',
-                    cancelButtonColor: '#888',
-                    confirmButtonText: 'Sim, Ativar!',
-                    cancelButtonText: 'Cancelar'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location = "processa-ativaUser.php?id=<?php echo $id ?>";
                     }
                 })
             });

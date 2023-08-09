@@ -14,6 +14,11 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <style>
+            .left{
+                margin-left: 20px;
+            }
+        </style>
     </head>
 
     <body class="sb-nav-fixed">
@@ -62,6 +67,11 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                                     $consulta = $usuario->consultaID($dataId);
                                     $username = $usuario->getUsername();
                                     $email = $usuario->getEmail();
+                                    $status = $usuario->getStatus();
+                                    $ativar = ($status == 1) ? "<a href='javascript:void(0)' class='desativa btn btn-warning left'>Desativar</a>" : 
+                                    "<a href='javascript:void(0)' class='ativa btn btn-success left'>Ativar</a>";
+ 
+                                        
                                     ?>
 
                                     <form class="p-4" method="post" action="processa-editUser.php">
@@ -72,7 +82,7 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                                             </div>
                                             <div class="col">
                                                 <input type="text" class="form-control" 
-                                                value="<?php echo $username ?>"
+                                                value="<?=$username ?>"
                                                 name="username" id="username">
                                             </div>
                                         </div>
@@ -82,15 +92,17 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                                             </div>
                                             <div class="col">
                                                 <input type="email" class="form-control" 
-                                                value="<?php echo $email ?>"
+                                                value="<?=$email ?>"
                                                 name="email" id="email">
                                             </div>
                                         </div>
                                         <div class="col">
-                                        <a href="admin.php" class="btn btn-secondary">Cancelar</a>
-                                          <a href="mudaSenha.php?id=<?php echo $dataIds ?>"
-                                          class="btn btn-danger ms-4 me-4">Alterar Senha</a>
-                                            <button type="submit" class="btn btn-primary">Atualizar dados</button>
+                                           <?=$ativar?>
+                                           <a href="mudaSenha.php?id=<?=$dataIds ?>" class="btn btn-danger ms-4 me-4">Alterar Senha</a>
+                                           <br><br>
+                                         
+                                          <a href="admin.php" class="btn btn-secondary">Cancelar</a>
+                                            <button type="submit" class="btn btn-primary left">Atualizar dados</button>
                                             
                                         </div>
                                 </div>
@@ -110,7 +122,7 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
         <footer class="py-4 bg-dark" style="position: absolute; bottom: 0; width: 100%">
             <div class="container-fluid px-4">
                 <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Logado como: <?php echo $user; ?></div>
+                    <div class="text-muted">Logado como: <?=$user; ?></div>
                 </div>
             </div>
         </footer>
@@ -120,8 +132,46 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="js/scripts.js"></script>
 
+        <script>
+            $(".desativa").click(function() {
+                Swal.fire({
+                    title: "Você tem certeza?",
+                    text: "O admin será desativado!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#888',
+                    confirmButtonText: 'Sim, Desativar!',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = "processa-desativaUser.php?id=<?=$dataIds ?>";
+                    }
+                })
+            });
+        </script>
+
+        <script>
+            $(".ativa").click(function() {
+                Swal.fire({
+                    title: "Atenção!",
+                    text: "Você deseja realmente ativar esse Admin?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: '#33d',
+                    cancelButtonColor: '#888',
+                    confirmButtonText: 'Sim, Ativar!',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = "processa-ativaUser.php?id=<?=$dataIds ?>";
+                    }
+                })
+            });
+        </script>
 
         <?php
         if (isset($_GET['edit']) && $_GET['edit'] == "alterado") {

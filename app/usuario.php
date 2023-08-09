@@ -5,6 +5,7 @@ class usuario extends conexao
 	private $username;
 	private $email;
 	private $senha;
+	private $status;
 	private $tabela = 'login';
 
 	public function __construct()
@@ -41,6 +42,16 @@ class usuario extends conexao
 	public function setSenha($senha)
 	{
 		$this->senha = $senha;
+	}
+
+	public function getStatus()
+	{
+		return $this->status;
+	}
+
+	public function setStatus($status)
+	{
+		$this->status = $status;
 	}
 
 
@@ -116,19 +127,21 @@ class usuario extends conexao
 	public function consultaID($id){
 		$nome = '';
 		$email = '';
+		$status = '';
 
-		$sql = "SELECT username,email FROM $this->tabela WHERE id = ?";
+		$sql = "SELECT username,email,`status` FROM $this->tabela WHERE id = ?";
 		$stmt = $this->conn->prepare($sql);
 		$stmt->bind_param('i', $id);
 		$stmt->execute();
 
 		if ($stmt == true) {
 			$stmt->store_result();
-			$stmt->bind_result($nome, $email);
+			$stmt->bind_result($nome, $email, $status);
 			$stmt->fetch();
 
 			$this->setUsername($nome);
-			$this->setEmail($email);;
+			$this->setEmail($email);
+			$this->setStatus($status);
 		} else {
 			die("Falha na consulta!");
 		}
