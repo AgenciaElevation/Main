@@ -106,11 +106,7 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                         $id = $linha['id'];
                         $planos = ($linha['plano'] == 'site') ? 'Site por Assinatura' : ($linha['plano'] == 'bio' ? 'Bio do Instagram' : 'Google Meu Negócio');
                         $status = ($linha['status'] == 1) ? "<span class='text-success'>Ativo</span>" : "<span class='text-danger'>Inativo</span>";
-                        $ativar = ($linha['status'] == 1) ? "<a href='javascript:void(0)' class='desativa'><img class='icon' src='assets/img/lock.png'></a>" : "<a href='javascript:void(0)' class='ativa'><img class='icon' src='assets/img/check.png'></a>";
-
-
-
-
+                        
                         echo "        
                         <div class='accordion accordion-flush bg mb-3' id='accordion$id'>
                         <div class='accordion-item border'>
@@ -134,9 +130,10 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                                         $planos
                                     </div>
                                      <div class='col pad2'><strong>Status: </strong>
-                                        $status  $ativar 
+                                        $status 
                                         </div>";
 
+                        $id = base64_encode($linha['id']);                
                         $hoje = date('Y-m-d');
                         $dataInicial = $linha['data_contrato'];
                         $timestampInicial = strtotime($dataInicial);
@@ -219,8 +216,6 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
             echo "<script src='js/swal.edit.js'></script>";
         }
         ?>
-
-        
 
     </body>
 

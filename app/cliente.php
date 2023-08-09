@@ -4,21 +4,22 @@ class cliente extends conexao
 {
 	private $nome;
 	private $dom;
-	private $id; 
-	private $email; 
+	private $status;
+	private $id;
+	private $email;
 	private $senha;
-	private $fone; 
+	private $fone;
 	private $cpfcnpj;
-	private $cep; 
-	private $rua; 
-	private $num; 
-	private $comp; 
+	private $cep;
+	private $rua;
+	private $num;
+	private $comp;
 	private $bairro;
-	private $cidade; 
+	private $cidade;
 	private $estado;
 	private $contrato;
 	private $plano;
-	
+
 	private $tabela = 'clientes';
 
 
@@ -28,128 +29,169 @@ class cliente extends conexao
 	}
 
 
-	public function getNome(){
+	public function getNome()
+	{
 		return $this->nome;
 	}
 
-	public function setNome($nome){
+	public function setNome($nome)
+	{
 		$this->nome = $nome;
 	}
 
-	public function getDom(){
+	public function getDom()
+	{
 		return $this->dom;
 	}
 
-	public function setDom($dom){
+	public function setDom($dom)
+	{
 		$this->dom = $dom;
 	}
 
-	public function getEmail(){
+	public function getStatus()
+	{
+		return $this->status;
+	}
+
+	public function setStatus($status)
+	{
+		$this->status = $status;
+	}
+
+	public function getEmail()
+	{
 		return $this->email;
 	}
 
-	public function setEmail($email){
+	public function setEmail($email)
+	{
 		$this->email = $email;
 	}
 
-	public function getSenha(){
+	public function getSenha()
+	{
 		return $this->senha;
 	}
 
-	public function setSenha($senha){
+	public function setSenha($senha)
+	{
 		$this->senha = $senha;
 	}
 
-	public function getFone(){
+	public function getFone()
+	{
 		return $this->fone;
 	}
 
-	public function setFone($fone){
+	public function setFone($fone)
+	{
 		$this->fone = $fone;
 	}
 
-	public function getCpfcnpj(){
+	public function getCpfcnpj()
+	{
 		return $this->cpfcnpj;
 	}
 
-	public function setCpfcnpj($cpfcnpj){
+	public function setCpfcnpj($cpfcnpj)
+	{
 		$this->cpfcnpj = $cpfcnpj;
 	}
 
-	public function getCep(){
+	public function getCep()
+	{
 		return $this->cep;
 	}
 
-	public function setCep($cep){
+	public function setCep($cep)
+	{
 		$this->cep = $cep;
 	}
 
-	public function getRua(){
+	public function getRua()
+	{
 		return $this->rua;
 	}
 
-	public function setRua($rua){
+	public function setRua($rua)
+	{
 		$this->rua = $rua;
 	}
 
-	public function getNum(){
+	public function getNum()
+	{
 		return $this->num;
 	}
 
-	public function setNum($num){
+	public function setNum($num)
+	{
 		$this->num = $num;
 	}
 
-	public function getComp(){
+	public function getComp()
+	{
 		return $this->comp;
 	}
 
-	public function setComp($comp){
+	public function setComp($comp)
+	{
 		$this->comp = $comp;
 	}
 
-	public function getBairro(){
+	public function getBairro()
+	{
 		return $this->bairro;
 	}
 
-	public function setBairro($bairro){
+	public function setBairro($bairro)
+	{
 		$this->bairro = $bairro;
 	}
 
-	public function getCidade(){
+	public function getCidade()
+	{
 		return $this->cidade;
 	}
 
-	public function setCidade($cidade){
+	public function setCidade($cidade)
+	{
 		$this->cidade = $cidade;
 	}
 
-	public function getEstado(){
+	public function getEstado()
+	{
 		return $this->estado;
 	}
 
-	public function setEstado($estado){
+	public function setEstado($estado)
+	{
 		$this->estado = $estado;
 	}
 
-	public function getContrato(){
+	public function getContrato()
+	{
 		return $this->contrato;
 	}
 
-	public function setContrato($contrato){
+	public function setContrato($contrato)
+	{
 		$this->contrato = $contrato;
-	}	
-	
-	public function getPlano(){
+	}
+
+	public function getPlano()
+	{
 		return $this->plano;
 	}
 
-	public function setPlano($plano){
+	public function setPlano($plano)
+	{
 		$this->plano = $plano;
 	}
 
 	// logar cliente
-	public function logar($email, $senha){
+	public function logar($email, $senha)
+	{
 
 		$sql = "SELECT id, email, senha FROM $this->tabela WHERE email = '$email' 
 			AND senha = '$senha' AND status = 1";
@@ -170,7 +212,8 @@ class cliente extends conexao
 	}
 
 	//verifica no banco
-	public function verifica($nome, $email, $senha, $fone, $cpfcnpj, $cep, $rua, $num, $comp, $bairro, $cidade, $estado){
+	public function verifica($nome, $email, $senha, $fone, $cpfcnpj, $cep, $rua, $num, $comp, $bairro, $cidade, $estado)
+	{
 
 		$sql = "SELECT cpfcnpj, email FROM $this->tabela WHERE cpfcnpj = '$cpfcnpj' 
 			OR email = '$email'";
@@ -179,7 +222,7 @@ class cliente extends conexao
 		if (mysqli_num_rows($result) >= 1) {
 			header('Location:cadastraCliente.php?insert=error');
 		} else {
-				$this->cadastracliente($nome, $email, $senha, $fone, $cpfcnpj, $cep, $rua, $num, $comp, $bairro, $cidade, $estado);
+			$this->cadastracliente($nome, $email, $senha, $fone, $cpfcnpj, $cep, $rua, $num, $comp, $bairro, $cidade, $estado);
 		}
 	}
 
@@ -202,22 +245,36 @@ class cliente extends conexao
 	}
 
 	// consulta por id
-	public function consultaID($id){
-		 $dom = ''; $nome = ''; $email = ''; $cpfcnpj = ''; $cep = ''; $rua = ''; $num = '';
-		 $comp = ''; $bairro = ''; $cidade = ''; $estado = ''; $contrato = ''; $plano ='';
+	public function consultaID($id)
+	{
+		$dom = '';
+		$nome = '';
+		$status = '';
+		$email = '';
+		$cpfcnpj = '';
+		$cep = '';
+		$rua = '';
+		$num = '';
+		$comp = '';
+		$bairro = '';
+		$cidade = '';
+		$estado = '';
+		$contrato = '';
+		$plano = '';
 
-		$sql = "SELECT dominio, nome, email, cpfcnpj, rua, num, comp, bairro, cidade, estado, cep, data_contrato, plano  FROM $this->tabela WHERE id = ?";
+		$sql = "SELECT dominio, nome, `status`, email, cpfcnpj, rua, num, comp, bairro, cidade, estado, cep, data_contrato, plano  FROM $this->tabela WHERE id = ?";
 		$stmt = $this->conn->prepare($sql);
 		$stmt->bind_param('i', $id);
 		$stmt->execute();
 
 		if ($stmt == true) {
 			$stmt->store_result();
-			$stmt->bind_result($dom, $nome, $email,  $cpfcnpj, $rua, $num, $comp, $bairro, $cidade, $estado, $cep, $contrato, $plano);
+			$stmt->bind_result($dom, $nome, $status, $email,  $cpfcnpj, $rua, $num, $comp, $bairro, $cidade, $estado, $cep, $contrato, $plano);
 			$stmt->fetch();
 
 			$this->setDom($dom);
 			$this->setNome($nome);
+			$this->setStatus($status);
 			$this->setEmail($email);
 			$this->setEmail($email);
 			$this->setCpfcnpj($cpfcnpj);
@@ -233,23 +290,24 @@ class cliente extends conexao
 		} else {
 			die("Falha na consulta!");
 		}
-			$stmt->close();
-			$this->conn->close();
-		}
+		$stmt->close();
+		$this->conn->close();
+	}
 
 
-		public function consultaALL(){
-			$sql = "SELECT * FROM $this->tabela";
-			$result = $this->conn->query($sql) 
+	public function consultaALL()
+	{
+		$sql = "SELECT * FROM $this->tabela";
+		$result = $this->conn->query($sql)
 			or die("Falha na consulta");
-			
-			if($result == true){
-				return $result;
-			}else{
-				die("Falha na consulta!");
-			}
-			$this->conn->close();
+
+		if ($result == true) {
+			return $result;
+		} else {
+			die("Falha na consulta!");
 		}
+		$this->conn->close();
+	}
 
 
 	//editar dados
@@ -285,7 +343,7 @@ class cliente extends conexao
 		}
 		$stmt->close();
 		$this->conn->close();
-	}	
+	}
 
 
 	//trocar senha
@@ -306,5 +364,38 @@ class cliente extends conexao
 		$this->conn->close();
 	}
 
+	//desativa cliente
+	public function desativar($id)
+	{
+		$sql = "UPDATE $this->tabela SET status = 0 WHERE id = ?";
+		$stmt = $this->conn->prepare($sql);
+		$stmt->bind_param('i', $id);
+		$stmt->execute();
 
+		if ($stmt == true) {
+			header('Location:showClients.php?edit=alterado');
+		} else {
+			die("Falha no atualizar!");
+		}
+		$stmt->close();
+		$this->conn->close();
+	}
+
+	//ativa cliente
+	public function ativar($id)
+	{
+		$sql = "UPDATE $this->tabela SET status = 1 WHERE id = ?";
+		$stmt = $this->conn->prepare($sql);
+		$stmt->bind_param('i', $id);
+		$stmt->execute();
+
+		if ($stmt == true) {
+			header('Location:showClients.php?edit=alterado');
+		} else {
+			die("Falha no atualizar!");
+		}
+		$stmt->close();
+		$this->conn->close();
+	}
 } //fim da classe cliente
+

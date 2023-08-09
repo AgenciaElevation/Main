@@ -3,10 +3,13 @@ session_start();
 if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
     $user = $_SESSION['user'];
     $id = $_GET['id'];
+    $id = base64_decode($id);
 
     require('../cliente.php');
     $cliente = new cliente();
     $consulta = $cliente->consultaID($id);
+    $status = ($cliente->getStatus() == 1) ? "<span class='text-success'>Ativo</span>" : "<span class='text-danger'>Inativo</span>";               
+    $ativar = ($cliente->getStatus() == 1) ? "<a href='javascript:void(0)' class='desativa'><img class='icon' src='assets/img/lock.png'>(desativar)</a>" : "<a href='javascript:void(0)' class='ativa'><img class='icon' src='assets/img/check.png'>(ativar)</a>";
     
 ?>
         <!DOCTYPE html>
@@ -31,6 +34,14 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                 }
                 .font20{
                     font-size: 20px;
+                }
+                .ativa{
+                    color: #0a0;
+                    text-decoration: none;
+                }
+                .desativa{
+                    color: #a00;
+                    text-decoration: none;
                 }
             </style>
 
@@ -68,10 +79,13 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                         <div class="card larg font20 p-5">
                             <form method="post" action="processa-editCliente.php">
                             <input type="hidden" name="id" value="<?=$id?>" />    
-                            <strong>Cliente:</strong> <?=$cliente->getNome()?> <br><br>
+                            <strong>Cliente:</strong> <?=$cliente->getNome()?> - <?=$status?> - <?=$ativar?>
+  
+                            <br><br>
                             <strong>Domínio:</strong> 
                             <input type="text" class="form-control" name="dominio" value="<?=$cliente->getDom()?>" />
                             <br><br>
+                            <a href="showClients.php" class="btn btn-secondary">VOLTAR</a>
                             <button class="btn btn-success">SALVAR</button>
                             </form>
                         </div>
@@ -105,6 +119,48 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                     $("footer").removeClass('fixed-bottom');
                 }
             </script>
+
+
+		
+
+
+        <script>
+            $(".desativa").click(function() {
+                Swal.fire({
+                    title: "Você tem certeza?",
+                    text: "O Cliente será desativado!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#888',
+                    confirmButtonText: 'Sim, Desativar!',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = "processa-desativaCliente.php?id=<?=$id ?>";
+                    }
+                })
+            });
+        </script>
+
+        <script>
+            $(".ativa").click(function() {
+                Swal.fire({
+                    title: "Atenção!",
+                    text: "Você deseja ativar novamente esse Cliente?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: '#33d',
+                    cancelButtonColor: '#888',
+                    confirmButtonText: 'Sim, Ativar!',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = "processa-ativaCliente.php?id=<?=$id ?>";
+                    }
+                })
+            });
+        </script>
 
 
         </body>
