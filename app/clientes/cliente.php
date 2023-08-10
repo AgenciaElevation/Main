@@ -86,7 +86,7 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                                 <div class="card-header">Meu Plano</div>
                                 <div class="card-body bg-light text-dark">
 
-                                <a href="#" class="client-link">
+                                <a href="meuPlano.php" class="client-link">
                                      <i class="fa-solid fa-3x fa-chart-line"></i>
                                     </a>
 
@@ -101,7 +101,7 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                                 <div class="card-header">Meus Dados</div>
                                 <div class="card-body bg-light text-dark">
 
-                                    <a href="#" class="client-link">
+                                    <a href="meusDados.php" class="client-link">
                                      <i class="fa-solid fa-3x fa-rectangle-list"></i>
                                     </a>
 

@@ -85,8 +85,9 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
         <main class="mTop">
             <div class="container contrato">
 
-                <h2><strong>PRESTAÇÃO DE SERVIÇOS: CRIAÇÃO E DESENVOLVIMENTO DE WEB SITE</strong> </h2>
-
+                <h2><strong>CONTRATO DE PRESTAÇÃO DE SERVIÇOS: <br/>
+                CRIAÇÃO E DESENVOLVIMENTO DE WEB SITE</strong> </h2>
+                <br/>
 
                 <p>Para os fins deste contrato, entende-se como:</p>
 
@@ -126,8 +127,9 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                 <h3>CLÁUSULA 1º: PLANOS</h3>
 
                 <h4>Plano - Site por Assinatura:</h4>
-                <p>Ideal para sua empresa mostrar o que faz e para quem faz de
-                    forma eficiente e elegante.</p>
+                <p>Ideal para pequenas empresas e profissionais liberais/autômonos mostrarem o que fazem
+                     e para quem fazem de
+                    forma eficiente, elegante e profissional na Web.</p>
                 <ul>
                     <li>Layout Personalizado</li>
                     <li>Site 100% responsivo</li>
