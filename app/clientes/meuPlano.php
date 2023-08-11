@@ -7,6 +7,16 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
     require('../cliente.php');
     $cliente = new cliente();
     $consulta = $cliente->consultaID($ID);
+    $pgto = ($cliente->getPgto() == 1) ? "<span class='text-success'>Ativo</span>" : "<span class='text-danger'>Inativo</span>";
+    $planos = ($cliente->getPlano() == 'site') ? 'Site por Assinatura' : ($cliente->getPlano() == 'bio' ? 'Bio do Instagram' : 'Google Meu Negócio');
+    $hoje = date('Y-m-d');
+    $dataInicial = $cliente->getContrato();
+    $timestampInicial = strtotime($dataInicial);
+    $segundos = 365 * 24 * 60 * 60;
+    $timestampFinal = $timestampInicial + $segundos;
+    $dataFinal = date('Y-m-d', $timestampFinal);
+    $fimContrato = date('d/m/Y', $timestampFinal);
+
 ?>
     <!DOCTYPE html>
     <html lang="pt-br">
@@ -25,6 +35,13 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
             .mTop {
                 position: relative;
                 top: 80px;
+            }
+            h4{
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+            .f20{
+                font-size: 20px;
             }
             .plano{
                 padding: 0 50px;
@@ -81,8 +98,43 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
 
                 <div class="row card mt-5 p-4">
                     <h4>Informações</h4>
-                        INFORMAÇÕES DO PLANO - LINK DE PAGAMENTO (PLANO NOVO)
-                    
+                        <div class="row">
+                            <div class="col">
+                                <p class="f20">Plano: <?=$planos?></p>
+                            </div>
+                            <div class="col">
+                                <p class="f20">Status: <?=$pgto?></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mt-3">
+                                <?php
+                                    if(isset($dataInicial)){
+                                        if ($dataFinal >= $hoje) {
+                                            echo ' <p class="text-success f20">Vencimento: ' . $fimContrato . '</p>';
+                                        } else {
+                                            echo ' <p class="text-danger f20">Vencimento: ' . $fimContrato . ' </p>';
+                                        }
+                                    }else{
+                                        echo "
+                                            <a href='#' data-toggle='modal' data-target='#modal-pgto'
+                                            class='btn btn-warning'>FAZER PAGAMENTO</a>";
+                                    }
+                                ?>
+                            </div>
+                            <div class="col mt-3">
+                                <?php
+                                    if (isset($dataInicial) && $dataFinal <= $hoje) {
+                                        echo "<a href='#' data-toggle='modal' data-target='#modal-pgto'
+                                        class='btn btn-warning'>RENOVAR CONTRATO</a>";
+                                    } 
+                                ?>
+                            </div>
+
+                        </div>
+                        
+
+                        
                 </div>
                 
                 <div class="row card p-4 tutoriais">
@@ -157,6 +209,8 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                 </div>
             </div>
         </footer>
+
+        <?php include("modal/modal-pgto.php"); ?>
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"></script>

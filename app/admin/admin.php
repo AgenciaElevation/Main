@@ -217,7 +217,7 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                     cancelButtonText: 'Cancelar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = "processa-deleteUser.php?id=<?php echo $id ?>";
+                        window.location = "processa-deleteUser.php?id=<?=$id ?>";
                     }
                 })
             });

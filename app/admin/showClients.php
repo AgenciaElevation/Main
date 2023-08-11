@@ -140,7 +140,7 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                         $segundos = 365 * 24 * 60 * 60;
                         $timestampFinal = $timestampInicial + $segundos;
                         $dataFinal = date('Y-m-d', $timestampFinal);
-                        $fimContrato = date('d-m-Y', $timestampFinal);
+                        $fimContrato = date('d/m/Y', $timestampFinal);
 
 
                         echo "

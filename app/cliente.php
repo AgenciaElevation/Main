@@ -19,6 +19,7 @@ class cliente extends conexao
 	private $estado;
 	private $contrato;
 	private $plano;
+	private $pgto;
 
 	private $tabela = 'clientes';
 
@@ -189,6 +190,19 @@ class cliente extends conexao
 		$this->plano = $plano;
 	}
 
+	public function getPgto()
+	{
+		return $this->pgto;
+	}
+
+	public function setPgto($pgto)
+	{
+		$this->pgto = $pgto;
+	}
+
+	
+
+
 	// logar cliente
 	public function logar($email, $senha)
 	{
@@ -261,15 +275,16 @@ class cliente extends conexao
 		$estado = '';
 		$contrato = '';
 		$plano = '';
+		$pgto = '';
 
-		$sql = "SELECT dominio, nome, `status`, email, cpfcnpj, rua, num, comp, bairro, cidade, estado, cep, data_contrato, plano  FROM $this->tabela WHERE id = ?";
+		$sql = "SELECT dominio, nome, `status`, email, cpfcnpj, rua, num, comp, bairro, cidade, estado, cep, data_contrato, plano, pgto  FROM $this->tabela WHERE id = ?";
 		$stmt = $this->conn->prepare($sql);
 		$stmt->bind_param('i', $id);
 		$stmt->execute();
 
 		if ($stmt == true) {
 			$stmt->store_result();
-			$stmt->bind_result($dom, $nome, $status, $email,  $cpfcnpj, $rua, $num, $comp, $bairro, $cidade, $estado, $cep, $contrato, $plano);
+			$stmt->bind_result($dom, $nome, $status, $email,  $cpfcnpj, $rua, $num, $comp, $bairro, $cidade, $estado, $cep, $contrato, $plano, $pgto);
 			$stmt->fetch();
 
 			$this->setDom($dom);
@@ -287,6 +302,7 @@ class cliente extends conexao
 			$this->setCep($cep);
 			$this->setContrato($contrato);
 			$this->setPlano($plano);
+			$this->setPgto($pgto);
 		} else {
 			die("Falha na consulta!");
 		}
@@ -401,7 +417,7 @@ class cliente extends conexao
 	//confirma pgto
 	public function confirmaPgto($hoje, $id)
 	{
-		$sql = "UPDATE $this->tabela SET data_contrato = ? WHERE id = ?";
+		$sql = "UPDATE $this->tabela SET data_contrato = ?, pgto = 1 WHERE id = ?";
 		$stmt = $this->conn->prepare($sql);
 		$stmt->bind_param('si', $hoje, $id);
 		$stmt->execute();
