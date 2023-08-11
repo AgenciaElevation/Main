@@ -161,7 +161,7 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                                 </div>
                                 </div>
                                 <div class='row my-4'>
-                                <a href='editaCliente.php?id=$id' class='btn btn-success conf'>CONGIGURAR</a>
+                                <a href='editaCliente.php?id=$id' class='btn btn-success conf'>CONFIGURAR</a>
                                 </div>
                             </div>
                         </div>
