@@ -165,13 +165,13 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
 
                         <div class="row">
                                 <div class="col">
-                                    AATUALIZANDO ESQUIPE
+                                    ATUALIZANDO EQUIPE
                                 </div>
                                 <div class="col">
                                     ATUALIZANDO MAPA
                                 </div>
                                 <div class="col">
-                                    ???
+                                    PAGAMENTOS
                                 </div>
                         </div>
 

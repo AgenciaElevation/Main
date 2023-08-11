@@ -141,7 +141,7 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                     cancelButtonText: 'Cancelar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = "processa-desativaCliente.php?id=<?=$id ?>";
+                        window.location = "processa-desativaCliente.php?id=<?=$encId ?>";
                     }
                 })
             });
@@ -160,7 +160,7 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                     cancelButtonText: 'Cancelar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = "processa-ativaCliente.php?id=<?=$id ?>";
+                        window.location = "processa-ativaCliente.php?id=<?=$encId ?>";
                     }
                 })
             });

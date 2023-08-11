@@ -144,12 +144,15 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
 
 
                         echo "
-                                    <div class='col'><strong>Vence:</strong>";
-                        if ($dataFinal >= $hoje) {
+                                    <div class='col'><strong>Vencimento: </strong>";
+                        if(!$dataInicial) {
+                            echo ' <span class="text-secondary"> NÃO DEFINIDO  </span>';
+                        } else if ($dataFinal >= $hoje) {
                             echo ' <span class="text-success">' . $fimContrato . '</span>';
                         } else {
                             echo ' <span class="text-danger">' . $fimContrato . ' </span>';
                         }
+            
 
 
 
