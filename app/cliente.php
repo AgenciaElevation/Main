@@ -9,6 +9,7 @@ class cliente extends conexao
 	private $email;
 	private $senha;
 	private $fone;
+	private $whats;
 	private $cpfcnpj;
 	private $cep;
 	private $rua;
@@ -88,6 +89,16 @@ class cliente extends conexao
 	public function setFone($fone)
 	{
 		$this->fone = $fone;
+	}
+
+	public function getWhats()
+	{
+		return $this->whats;
+	}
+
+	public function setWhats($whats)
+	{
+		$this->whats = $whats;
 	}
 
 	public function getCpfcnpj()
@@ -265,6 +276,8 @@ class cliente extends conexao
 		$nome = '';
 		$status = '';
 		$email = '';
+		$fone = '';
+		$whats = '';
 		$cpfcnpj = '';
 		$cep = '';
 		$rua = '';
@@ -277,21 +290,22 @@ class cliente extends conexao
 		$plano = '';
 		$pgto = '';
 
-		$sql = "SELECT dominio, nome, `status`, email, cpfcnpj, rua, num, comp, bairro, cidade, estado, cep, data_contrato, plano, pgto  FROM $this->tabela WHERE id = ?";
+		$sql = "SELECT dominio, nome, `status`, email, fone, whats, cpfcnpj, rua, num, comp, bairro, cidade, estado, cep, data_contrato, plano, pgto  FROM $this->tabela WHERE id = ?";
 		$stmt = $this->conn->prepare($sql);
 		$stmt->bind_param('i', $id);
 		$stmt->execute();
 
 		if ($stmt == true) {
 			$stmt->store_result();
-			$stmt->bind_result($dom, $nome, $status, $email,  $cpfcnpj, $rua, $num, $comp, $bairro, $cidade, $estado, $cep, $contrato, $plano, $pgto);
+			$stmt->bind_result($dom, $nome, $status, $email, $fone, $whats, $cpfcnpj, $rua, $num, $comp, $bairro, $cidade, $estado, $cep, $contrato, $plano, $pgto);
 			$stmt->fetch();
 
 			$this->setDom($dom);
 			$this->setNome($nome);
 			$this->setStatus($status);
 			$this->setEmail($email);
-			$this->setEmail($email);
+			$this->setFone($fone);
+			$this->setWhats($whats);
 			$this->setCpfcnpj($cpfcnpj);
 			$this->setRua($rua);
 			$this->setNum($num);
@@ -361,6 +375,23 @@ class cliente extends conexao
 		$this->conn->close();
 	}
 
+	public function atualizaDadosCliente($email, $fone, $whats, $cep, $rua, $num, $comp, $bairro, $cidade, $estado, $dom)
+	{
+		$sql = "UPDATE $this->tabela SET email = ?, fone = ?, whats = ?, cep = ?, 
+				rua = ?, num = ?, comp = ?, bairro  = ?, cidade  = ?, estado  = ?
+				WHERE dominio = ?";
+		$stmt = $this->conn->prepare($sql);
+		$stmt->bind_param('ssississsss', $email, $fone, $whats, $cep, $rua, $num, $comp, $bairro, $cidade, $estado, $dom);
+		$stmt->execute();
+
+		if ($stmt == true) {
+			header('Location:meusDados.php?edit=alterado');
+		} else {
+			die("Falha no atualizar!");
+		}
+		$stmt->close();
+		$this->conn->close();
+	}
 
 	//trocar senha
 	public function novaSenha($senha, $id)

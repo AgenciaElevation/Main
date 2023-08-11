@@ -165,6 +165,18 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
 
                         <div class="row">
                                 <div class="col">
+                                    AATUALIZANDO ESQUIPE
+                                </div>
+                                <div class="col">
+                                    ATUALIZANDO MAPA
+                                </div>
+                                <div class="col">
+                                    ???
+                                </div>
+                        </div>
+
+                        <div class="row">
+                                <div class="col">
                                     MUDANDO CORES
                                 </div>
                                 <div class="col">
@@ -219,7 +231,6 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
         <script src="js/scripts.js"></script>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
 
 
     </body>

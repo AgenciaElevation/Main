@@ -7,6 +7,9 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
     require('../cliente.php');
     $cliente = new cliente();
     $consulta = $cliente->consultaID($ID);
+
+    $comp = $cliente->getComp();
+    $comp =  isset($comp) ? $comp : "";
 ?>
     <!DOCTYPE html>
     <html lang="pt-br">
@@ -37,6 +40,26 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                 top: 80px;
             }
 
+            .box {
+                display: none;
+                width: 320px;
+                box-sizing: border-box;
+                background-color: #fff;
+                border: solid 1px #ccc;
+                padding: 30px 60px;
+                text-align: center;
+                position: fixed;
+                top: 40%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 9;
+                box-shadow: 0 0 10px 8px RGBA(0, 0, 0, 0.6);
+            }
+
+            .box .big {
+                color: #050;
+                font-size: 32px;
+            }
         </style>
 
 
@@ -47,12 +70,11 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="#">Página do Cliente</a>
 
-            <!-- Navbar Search-->
-            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <div class="d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group text-white">
                     Cliente: <?= $cliente->getNome() ?>
                 </div>
-            </form>
+            </div>
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
@@ -68,9 +90,104 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
         </nav>
 
         <main class="mTop">
-            <div class="container plano">
-                <h2>Meus Dados</h2>
+            <div class="container plano" align="right">
+                <h2 align="left">Meus Dados</h2>
 
+                <form class="p-4" method="post" action="processa-editDadosCliente.php">
+                    <div class="row form-row align-items-center pb-3">
+                        <div class="col-sm-2">
+                            <label for="nome">Domínio:</label>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" value="<?= $cliente->getDom() ?>" disabled>
+                            <input type="hidden" name="dom" value="<?= $cliente->getDom() ?>">
+                        </div>
+                    </div>
+                    <div class="row form-row align-items-center pb-3">
+                        <div class="col-sm-2">
+                            <label for="titulo">Nome:</label>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" value="<?= $cliente->getNome() ?>" name="nome" disabled>
+                        </div>
+                    </div>
+                    <div class="row form-row align-items-center pb-3">
+                        <div class="col-sm-2">
+                            <label for="subtitulo">E-mail:</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="email" class="form-control" value="<?= $cliente->getEmail() ?>" name="email" id="email required">
+                        </div>
+                        <div class="col-sm-1">
+                            <label for="fone">Fone:</label>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" value="<?= $cliente->getFone() ?>" name="fone" id="fone" required>
+                        </div>
+                        <div class="col-sm-1">
+                            <label for="whats">Whatsapp:</label>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" value="<?= $cliente->getWhats() ?>" name="whats" id="whats">
+                        </div>
+                    </div>
+                    <div class="row form-row align-items-center pb-3">
+                        <div class="col-sm-2">
+                            <label for="dias">CEP:</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" value="<?= $cliente->getCEP() ?>" name="cep" id="cep" required>
+                        </div>
+                        <div class="col-sm-1">
+                            <label for="inicio">Rua:</label>
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" value="<?= $cliente->getRua() ?>" name="rua" id="rua" required>
+                        </div>
+                        <div class="col-sm-1">
+                            <label for="inicio">Número:</label>
+                        </div>
+                        <div class="col-sm-1">
+                            <input type="text" class="form-control" value="<?= $cliente->getNum() ?>" name="num" id="num" required>
+                        </div>
+                    </div>
+
+                    <div class="row form-row align-items-center pb-3">
+                        <div class="col-sm-2">
+                            <label for="dias">Complento:</label>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" value="<?= $comp ?>" name="comp" id="comp">
+                        </div>
+                        <div class="col-sm-1">
+                            <label for="inicio">Bairro:</label>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" value="<?= $cliente->getBairro() ?>" name="bairro" id="bairro" required>
+                        </div>
+                    </div>
+
+                    <div class="row form-row align-items-center pb-3">
+                        <div class="col-sm-2">
+                            <label for="dias">Cidade:</label>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" value="<?= $cliente->getCidade() ?>" name="cidade" id="cidade" required>
+                        </div>
+                        <div class="col-sm-1">
+                            <label for="inicio">Estado:</label>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" value="<?= $cliente->getEstado() ?>" name="estado" id="uf" required>
+                        </div>
+                    </div>
+                    <div class="col mt-4">
+                        <a href="cliente.php" class="btn btn-secondary">Cancelar</a>
+                        <button type="submit" class="btn btn-primary">Atualizar Dados</button>
+
+                    </div>
+            </div>
+            </form>
 
             </div>
 
@@ -84,15 +201,106 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
             </div>
         </footer>
 
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/scripts.js"></script>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+        <?php
+        if (isset($_GET['edit']) && $_GET['edit'] == "alterado") {
+            echo "<div class='box'>
+                <p class='big'>ATUALIZADO!</p>
+                <p>Dados atualizados com sucesso!</p>
+            </div>";
+        }
+        ?>
+    <script>
+        $(function(){
+            $(".box").fadeIn(1000, function(){
+                window.setTimeout(function(){
+                    $('.box').fadeOut(500);
+                }, 2000);
+            });
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#fone").mask("(00) 00000-0000")
+            $("#cep").mask("00.000-000")
+        })
+    </script>
 
+        
+
+        <script>
+            $(document).ready(function() {
+
+                function limpa_formulário_cep() {
+                    // Limpa valores do formulário de cep.
+                    $("#rua").val("");
+                    $("#num").val("");
+                    $("#comp").val("");
+                    $("#bairro").val("");
+                    $("#cidade").val("");
+                    $("#uf").val("");
+                    $("#ibge").val("");
+                }
+
+                //Quando o campo cep perde o foco.
+                $("#cep").blur(function() {
+
+                    //Nova variável "cep" somente com dígitos.
+                    var cep = $(this).val().replace(/\D/g, '');
+
+                    //Verifica se campo cep possui valor informado.
+                    if (cep != "") {
+
+                        //Expressão regular para validar o CEP.
+                        var validacep = /^[0-9]{8}$/;
+
+                        //Valida o formato do CEP.
+                        if (validacep.test(cep)) {
+
+                            //Preenche os campos com "..." enquanto consulta webservice.
+                            $("#rua").val("...");
+                            $("#num").val("");
+                            $("#comp").val("");
+                            $("#bairro").val("...");
+                            $("#cidade").val("...");
+                            $("#uf").val("...");
+                            $("#ibge").val("...");
+
+                            //Consulta o webservice viacep.com.br/
+                            $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function(dados) {
+
+                                if (!("erro" in dados)) {
+                                    //Atualiza os campos com os valores da consulta.
+                                    $("#rua").val(dados.logradouro);
+                                    $("#bairro").val(dados.bairro);
+                                    $("#cidade").val(dados.localidade);
+                                    $("#uf").val(dados.uf);
+                                    $("#ibge").val(dados.ibge);
+                                } //end if.
+                                else {
+                                    //CEP pesquisado não foi encontrado.
+                                    limpa_formulário_cep();
+                                    alert("CEP não encontrado.");
+                                }
+                            });
+                        } //end if.
+                        else {
+                            //cep é inválido.
+                            limpa_formulário_cep();
+                            alert("Formato de CEP inválido.");
+                        }
+                    } //end if.
+                    else {
+                        //cep sem valor, limpa formulário.
+                        limpa_formulário_cep();
+                    }
+                });
+            });
+        </script>
 
     </body>
 
