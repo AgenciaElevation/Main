@@ -147,7 +147,7 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                                     ESQUECI A SENHA
                                 </div>
                                 <div class="col">
-                                    PÁGINA ADMINISTRATIVA
+                                    SOLICITAR SUPORTE
                                 </div>
                         </div>
 

@@ -8,6 +8,7 @@
 		$feedback = $_POST['feedback'];
 		$finished = $_POST['finished'];
 		
+		require('form-suporte.php');
 		require('../suporte.php');
 		$suporte = new suporte();
 		$finaliza = $suporte->finalizaTiquete($feedback, $finished, $id);
