@@ -463,6 +463,23 @@ class cliente extends conexao
 	}
 
 
+	public function verificaEmail($email)
+	{
+
+		$sql = "SELECT email FROM $this->tabela WHERE email = '$email'";
+		$result = $this->conn->query($sql);
+
+		if (mysqli_num_rows($result) == 0) {
+			header('Location:esqueci-senha.php?email=error');
+		} else {
+			$this->recuperaSenha($email);
+		}
+	}
+
+	public function recuperaSenha($email)
+	{
+		require('form-pass.php');
+	}	
 
 } //fim da classe cliente
 

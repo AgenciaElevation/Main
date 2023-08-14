@@ -17,8 +17,8 @@ foreach ($consulta as $linha) {
         <meta charset="utf-8">
         <title><?php echo $linha['titulo'] . " - " . $linha['subtitulo']; ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-        <meta name="description" content="<?=$linha['subtitulo'] ?>">
-        <meta name="author" content="<?=$linha['site'] ?>">
+        <meta name="description" content="<?= $linha['subtitulo'] ?>">
+        <meta name="author" content="<?= $linha['site'] ?>">
         <meta name="format-detection" content="telephone=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
@@ -31,12 +31,13 @@ foreach ($consulta as $linha) {
         <link href="../../assets/css/estilos.css" rel="stylesheet">
         <link href="assets/css/style.css" rel="stylesheet">
         <style>
-            .senhalink{
+            .senhalink {
                 color: #000;
                 text-decoration: none;
                 font-weight: bold;
             }
-            .senhalink:hover{
+
+            .senhalink:hover {
                 text-decoration: underline;
                 color: #00f;
             }
@@ -51,27 +52,20 @@ foreach ($consulta as $linha) {
                     <div class="col-lg-5">
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
                             <div class="card-header text-center">
-                                <h3 class="font-weight-light my-4">Página de Login - Clientes</h3>
-                                <h4>Seu login é o seu e-mail</h4>
+                                <h3 class="font-weight-light my-4">RECUPERAÇÃO DE SENHA</h3>
                             </div>
                             <div class="card-body f22">
-                                <form method="post" action="processa-loginCliente.php">
+                                <form method="post" action="processa-novaSenha.php">
                                     <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
                                     <div class="mb-3">
-                                        <input class="form-control" type="text" name="cliente" placeholder="Email de cliente" required />
-                                    </div>
-                                    <div class="mb-3">
-                                        <input class="form-control" name="senha" type="password" placeholder="senha" required />
+                                        <input class="form-control" type="text" name="email" placeholder="Digite seu e-mail cadastrado" required />
                                     </div>
                                     <div class="row form-row align-items-center">
-                                    <div class="col-sm-6 text-center">
-                                            <a href="esqueci-senha.php" class="f18 senhalink">Esqueceu a senha?</a><br>
-                                            <button href="cadastraCliente.php" class="btn btn-primary btn-sm" id="cadastre">LOGAR</button>
-                                        </div>
-
                                         <div class="col-sm-6 text-center">
-                                            <span class="f18"><strong>Ainda não é cadastrado?</strong></span>
-                                            <a href="cadastraCliente.php" class="btn btn-success btn-sm" id="cadastre">CADASTRE-SE</a>
+                                            <a href="index.php" class="btn btn-secondary btn-sm" id="cadastre">VOLTAR</a>
+                                        </div>
+                                        <div class="col-sm-6 text-center">
+                                            <button class="btn btn-primary btn-sm" id="cadastre">RECUPERAR SENHA</button>
                                         </div>
                                     </div>
                                 </form>
@@ -122,12 +116,9 @@ foreach ($consulta as $linha) {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
 
     <?php
-    if (isset($_GET['cadastro']) && $_GET['cadastro'] == "completo") {
-        echo "<script src='assets/js/swal.completo.js'></script>";
-    }
 
-    if (isset($_GET['erro']) && $_GET['erro'] == "login") {
-        echo "<script src='assets/js/swal.error.js'></script>";
+    if (isset($_GET['email']) && $_GET['email'] == "error") {
+        echo "<script src='assets/js/swal.email-error.js'></script>";
     }
     ?>
     </body>

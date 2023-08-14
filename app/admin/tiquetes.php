@@ -91,7 +91,7 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                     <div class="card mb-5">
                         <div class="card-header bg-dark text-white">
                             <h4 class="pt-2">
-                                <i class="fas fa-list me-1"></i>
+                            <i class="fa-solid fa-ticket"></i>
                                 Tíquetes - Suporte Técnico
                             </h4>
                         </div>
