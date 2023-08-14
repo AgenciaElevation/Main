@@ -1,7 +1,7 @@
 <?php
 $data = date ('d/m/Y - H:i');
 $assunto = "Sua solicitação de suporte foi atendida!";
-$suporte = nl2br($feedback);
+$resposta = nl2br($feedback);
 $arquivo = "
 <html>
 <meta charset='utf-8'>
@@ -29,7 +29,7 @@ $arquivo = "
     <tr>
       <td style='padding: 10px 0 10px 0; font-family: sans-serif; font-size: 20px;'>
           <h4 style='color: #999'>Feedback do suporte técnico:</h4>   
-          ". $suporte ."
+          ". $resposta ."
       </td>
     </tr>
     <tr><td>&nbsp;</td></tr>
