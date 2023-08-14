@@ -8,7 +8,7 @@ $arquivo = "
 <tr>
         <td style='padding: 10px 0 10px 0; font-family: sans-serif;'>
             <h2 style='color: #00c'>Abertura de tíquete de suporte - Elevation</h2> <br>
-            Retemente: Suporte Elevation - [suporte@agenciaelevation.com.br] <br>
+            Retemente: Suporte Elevation  [suporte@agenciaelevation.com.br] <br>
             Assunto:  $assunto 
         </td>
       </tr>
