@@ -27,7 +27,8 @@ $arquivo = "
 
             <p>Se você solicitou a troca da senha, acesse o link abaixo:</p>
 
-            <p><a style='background-color: #00c; color: #fff; border-radius: 6px; padding: 6px 12px' 
+            <p><a style='background-color: #00f; color: #fff; border-radius: 6px; 
+            text-decorastion: none; padding: 6px 12px' 
             href='".$path."trocaSenha.php?token=$token&crypt=$crypt' class='btn btn-primary'>
               TROCAR MINHA SENHA</a></p>
             

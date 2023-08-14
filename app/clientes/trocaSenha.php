@@ -2,6 +2,7 @@
     $token = $_GET['token'];
     $email = base64_decode($_GET['crypt']);
 
+    echo "token: $token <br> email: $email";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
