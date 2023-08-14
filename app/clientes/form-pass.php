@@ -21,14 +21,16 @@ $arquivo = "
     <tr>
         <td style='padding: 10px 0 10px 0; font-family: sans-serif; font-size: 20px;'>
             <h3 style='color: #999'>Elevation - Link de Recuperação de senha:</h3>
-            <p>prezado ". $email ." . hoje, dia ". $data ." foi solicitada a troca da sua senha
+            <p>Prezado ". $email .". <br>hoje, dia ". $data .", foi solicitada a troca da sua senha <br>
             através do link <strong>Esqueci minha senha</strong> na página de login de cliente no nosso site.</p>
-            <p style='color: #a00; font-weight: bold'>caso a solicitação não tenha sido feita por você, exclua esse e-mail imediatamente!</p>
+            
+            <p style='color: #a00; font-weight: bold'>caso a solicitação não tenha sido feita por você, 
+            exclua esse e-mail imediatamente!</p>
 
             <p>Se você solicitou a troca da senha, acesse o link abaixo:</p>
 
             <p><a style='background-color: #00f; color: #fff; border-radius: 6px; 
-            text-decorastion: none; padding: 6px 12px' 
+            text-decoration: none; padding: 6px 12px' 
             href='".$path."trocaSenha.php?token=$token&crypt=$crypt' class='btn btn-primary'>
               TROCAR MINHA SENHA</a></p>
             
