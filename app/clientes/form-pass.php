@@ -31,7 +31,7 @@ $arquivo = "
 
             <p>Se você solicitou a troca da senha, acesse o link abaixo:</p>
 
-            <p><a href='".$path."trocaSenha.php?token-$token&crypt=$crypt' class='btn btn-primary>
+            <p><a href='".$path."trocaSenha.php?token-$token&crypt=$crypt' class='btn btn-primary'>
               TROCAR MINHA SENHA</a></p>
             
         </td>
