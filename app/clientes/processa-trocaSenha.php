@@ -1,8 +1,9 @@
 <?php
-		$email = $_POST['email'];
+		$senha = $_POST['senha'];
+		$senha2 = $_POST['senha2'];
 		
 		require('../cliente.php');
 		$cliente = new cliente();
-		$verifica = $cliente->verificaEmail($email);
+		
 
 ?>

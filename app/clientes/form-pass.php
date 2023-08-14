@@ -27,7 +27,7 @@ $arquivo = "
             <h3 style='color: #999'>Elevation - Link de Recuperação de senha:</h3>
             <p>prezado ". $email ." . hoje, dia ". $data ." foi solicitada a troca da sua senha
             através do link <strong>Esqueci minha senha</strong> na página de login de cliente no nosso site.</p>
-            <p>caso a solicitação não tenha sido feita por você, exclua esse e-mail imediatamente!</p>
+            <p style='color: #a00; font-weight: bold'>caso a solicitação não tenha sido feita por você, exclua esse e-mail imediatamente!</p>
 
             <p>Se você solicitou a troca da senha, acesse o link abaixo:</p>
 

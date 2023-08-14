@@ -133,6 +133,14 @@ foreach ($consulta as $linha) {
     if (isset($_GET['senha']) && $_GET['senha'] == "nova") {
         echo "<script src='assets/js/swal.senha.js'></script>";
     }
+
+    if (isset($_GET['troca']) && $_GET['troca'] == "erro") {
+        echo "<script src='assets/js/swal.troca-erro.js'></script>";
+    }
+
+    if (isset($_GET['troca']) && $_GET['troca'] == "sucesso") {
+        echo "<script src='assets/js/swal.troca-ok.js'></script>";
+    }
     ?>
     </body>
 
