@@ -27,8 +27,8 @@ $arquivo = "
     </tr>
     <tr>
       <td style='padding: 10px 0 10px 0; font-family: sans-serif; font-size: 20px;'>
-          <h3 style='color: #999'>Problema relatado:</h3>   
-          ". $suporte ."
+          <h4 style='color: #999'>Feedback do surpote técnico:</h4>   
+          ". $feedback ."
       </td>
     </tr>
     <tr>    
