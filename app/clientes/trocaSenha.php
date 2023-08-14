@@ -1,8 +1,7 @@
 <?php
-    $token = $_GET['token'];
+    if (isset($_GET['token']) && $_GET['token'] == "94a08da1fecbb6e8b46990538c7b50b2"){ 
     $email = base64_decode($_GET['crypt']);
-
-    echo "token: $token <br> email: $email";
+    
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -120,3 +119,8 @@
 </body>
 
 </html>
+<?php
+} else {
+    header('Location: ../../index.php');
+}
+?>

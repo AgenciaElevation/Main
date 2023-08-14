@@ -31,6 +31,9 @@ foreach ($consulta as $linha) {
         <link href="../../assets/css/estilos.css" rel="stylesheet">
         <link href="assets/css/style.css" rel="stylesheet">
         <style>
+        input {
+            font-size: 20px !important;
+        }
             .senhalink{
                 color: #000;
                 text-decoration: none;
@@ -61,7 +64,7 @@ foreach ($consulta as $linha) {
                                         <input class="form-control" type="text" name="cliente" placeholder="Email de cliente" required />
                                     </div>
                                     <div class="mb-3">
-                                        <input class="form-control" name="senha" type="password" placeholder="senha" required />
+                                        <input class="form-control" name="senha" type="password" placeholder="Senha" required />
                                     </div>
                                     <div class="row form-row align-items-center">
                                     <div class="col-sm-6 text-center">
