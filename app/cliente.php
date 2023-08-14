@@ -478,7 +478,8 @@ class cliente extends conexao
 
 	public function recuperaSenha($email)
 	{
-		require('form-pass.php');
+		require('clientes/form-pass.php');
+		header('Location:index.php?senha=nova');
 	}	
 
 } //fim da classe cliente

@@ -129,6 +129,10 @@ foreach ($consulta as $linha) {
     if (isset($_GET['erro']) && $_GET['erro'] == "login") {
         echo "<script src='assets/js/swal.error.js'></script>";
     }
+
+    if (isset($_GET['senha']) && $_GET['senha'] == "nova") {
+        echo "<script src='assets/js/swal.senha.js'></script>";
+    }
     ?>
     </body>
 
