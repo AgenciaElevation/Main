@@ -117,6 +117,8 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                             <div class='card-body'>
                             <form method='post' action='processa-feedback-suporte.php'>
                             <input type='hidden' name='id' value='$id'>
+                            <input type='hidden' name='email' value='$email'>
+                            <input type='hidden' name='tiquete' value='$tiquete'>
                             <input type='hidden' name='finished' value='1'>
                             <div class='row'>
                                 <div class='col'>".
