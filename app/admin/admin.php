@@ -15,6 +15,14 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    
+        <style>
+            img:hover{
+                filter: drop-shadow(0 0 0.75rem rgb(33, 33, 33));
+            }
+
+        </style>
+    
     </head>
 
     <body class="sb-nav-fixed">
@@ -62,6 +70,20 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                         </div>
 
                         <div class="col-md-2 mb-4">
+                            <div class="card bg-success text-light text-center">
+                                <div class="card-body fw-bold">Suporte</div>
+                                <div class="card-body bg-light text-dark">
+
+                                    <a href="tiquetes.php">
+                                        <img src="assets/img/headset.png" />
+                                    </a>
+                                </div>
+                                <div class="card-footer">
+                                </div>
+                            </div>
+                        </div>                     
+
+                        <div class="col-md-2 mb-4">
                             <div class="card bg-primary text-light text-center">
                                 <div class="card-body fw-bold">Adicionar Admins</div>
                                 <div class="card-body bg-light text-dark">
@@ -95,7 +117,7 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                                 <div class="card-body fw-bold">Editar Imagens</div>
                                 <div class="card-body bg-light text-dark">
                                     <a href="editImages.php">
-                                        <img src="assets/img/images.png" />
+                                        <img src="assets/img/image.png" />
                                     </a>
                                 </div>
                                 <div class="card-footer">

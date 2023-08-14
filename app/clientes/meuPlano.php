@@ -75,7 +75,7 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group text-white">
-                    Cliente: <?= $cliente->getNome() ?>
+                    Cliente: <?=$cliente->getNome() ?>
                 </div>
             </form>
             <!-- Navbar-->
@@ -190,9 +190,10 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
 
                 <div class="row card p-4">
                     <h4>Suporte</h4>
-                    <form method="post" action="suporte.php">
-                        <input type="hidden" nome="cliente" value="" />
-                        <textarea class="form-control help" name="help" placeholder="Relate o seu problema"></textarea>
+                    <form method="post" action="processa-tiquete.php">
+                        <input type="hidden" name="dominio" value="<?=$cliente->getDom() ?>">
+                        <input type="hidden" name="email" value="<?=$cliente->getEmail() ?>">
+                        <textarea class="form-control help" name="tiquete" placeholder="Relate o seu problema"></textarea>
                         <div align="right" class="mt-4 pe-2">
                             <button class="btn btn-primary">ENVIAR</button>
                         </div>
@@ -201,13 +202,53 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
                     
                 </div>
 
-
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
                 <div class="row card p-4">
                     <h4>Tíquetes Abertos</h4>
-                        NENHUM TÍQUETE ABERTO
-                    
+                    <div class="table-responsive">
+                            <table class="tiquetes table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Abertura</th>
+                                        <th>Tíquete</th>
+                                        <th class="text-center">Situação</th>
+                                        <th class="text-center">Data Conclusão</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php   
+                                        $dom = $cliente->getDom();
+                                        require('../suporte.php');
+                                        $suporte = new suporte();
+                                        $tiquetes = $suporte->consulta($dom);
+                                        $num = 1;
+                                        foreach ($tiquetes as $linha) {
+                                            $abertura = date('d/m/Y', strtotime($linha['created']));
+                                            $tiquete = $linha['tiquete'];
+                                            $limit = mb_strimwidth($tiquete, 0, 30, "...");
+                                            $finished = $linha['finished'];
+                                            $conclusao = date('d/m/Y', strtotime($linha['updated']));
+                                            $final = (!$linha['updated']) ? "AGUARDE" : $conclusao;
+                                            $status = ($linha['finished'] == 0) ? "<span class='text-warning'>em andamento</span>" : "<span class='text-success'>concluído</span>";
+                                       
+                                         echo "    
+                                        <tr>
+                                            <td>" . $num++ . "</td>
+                                            <td>$abertura</td>
+                                            <td>$limit</td>
+                                            <td class='text-center'>$status</td>
+                                            <td class='text-center'>$final</td>
+
+                                        </tr>";  
+                                    }  
+
+                                    ?>
+                                </tbody>
+                            </table>
+                    <a href="cliente.php" class="btn btn-secondary mt-4">VOLTAR</a>
                 </div>
-                    <a href="cliente.php" class="btn btn-secondary back mt-4">VOLTAR</a>
+                    
             </div>
                     
         </main>
@@ -230,7 +271,11 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/scripts.js"></script>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <?php                        
+        if (isset($_GET['tiquete']) && $_GET['tiquete'] == "aberto") {
+            echo "<script src='assets/js/swal.tiquete.js'></script>";
+        }
+        ?>
 
 
     </body>
