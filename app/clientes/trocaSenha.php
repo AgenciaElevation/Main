@@ -1,5 +1,6 @@
 <?php
-
+    $token = $_GET['token'];
+    $email = base64_decode($_GET['crypt']);
 
 ?>
 <!DOCTYPE html>
@@ -44,6 +45,7 @@
                         </div>
                         <div class="card-body f22">
                             <form method="post" id="form" action="processa-trocaSenha.php">
+                                <input type="hidden" name="email" value="<?=$email?>">
                                 <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
                                 <div class="mb-3">
                                     <input class="form-control" type="password" name="senha" id="senha" placeholder="Digite a nova Senha:" required />
