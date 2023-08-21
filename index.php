@@ -171,7 +171,7 @@ foreach ($consulta as $linha) {
                         <div class="col-sm">
                             <div class="card p-4 mtb">
                                 <div class="card-title text-center">
-                                    <a href="site-bio.php">MINI SITE (BIO)</a>
+                                    <a href="bio.php">MINI SITE (BIO)</a>
                                 </div>
                                 <div class="card-content">
                                     <ul class="list">
@@ -218,12 +218,12 @@ foreach ($consulta as $linha) {
                                         <li>Suporte Técnico</li>
                                     </ul>
                                     <hr />
-                                    <p class="price-text"><span class="price text-warning">Consulte!</span>
+                                    <p class="price-text">R$ <span class="price">44,90</span>/mês
                                         <br />
-                                        <span class="brline">* planos personalizados</span>
+                                        <span class="brline">* dividindo em 12 parcelas</span>
                                     </p>
                                     <div class="text-center">
-                                        <a href="assinar.php?negocio" class="btn btn-warning large">Consultar</a>
+                                        <a href="assinar.php?negocio" class="btn btn-success large">ASSINAR</a>
                                     </div>
                                 </div>
                             </div>
@@ -238,10 +238,9 @@ foreach ($consulta as $linha) {
                                 Com o COMBO PROMOÇÃO vocẽ assina os 3 serviços juntos (por no mínimo 12 meses) e ganha um super desconto!
                                 <p>Nesse Combo você terá:</p>
                                 <ul class="list">
-                                    <li>Site por Assinatura - (R$ 79,90)</li>
-                                    <li>Mini Site (BIO) - (R$ 6,99) </li>
-                                    <li>TODOS os recursos do Google Meu Negócio <br />
-                                        (o total de recursos sai por R$ 44,90 mensais)
+                                    <li>Site por Assinatura - (R$ 79,90 mensais)</li>
+                                    <li>Mini Site (BIO) - (R$ 6,99 mensais) </li>
+                                    <li>Google Meu Negócio - (R$ 44,90 mensais) </li>
                                     </li>
                                 </ul>
                                 <div class="mob">
@@ -249,12 +248,12 @@ foreach ($consulta as $linha) {
                                         por ter adquirido nosso Combo VIP!</p>
                                     <p class="text-center strong">Tudo isso que saíria por R$ <span class="price cancel">131,90</span>/mês, <br>
                                         nas você pagará apenas: </p>
-                                    <p class="price-text strong">R$ <span class="price ">94,90</span>/mês
+                                    <p class="price-text strong">R$ <span class="price ">99,90</span>/mês
                                         <br />
                                         <span class="brline">* na assinatura por 12 meses</span>
                                     </p>
                                     <div class="text-center">
-                                        <a href="assinar.php?bio" class="btn btn-success large">ASSINAR</a>
+                                        <a href="assinar.php?combo" class="btn btn-success large">ASSINAR</a>
                                     </div>
                                 </div>
                             </div>
